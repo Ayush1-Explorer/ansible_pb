@@ -1,0 +1,19 @@
+---
+- name: file module
+  hosts: all
+
+  tasks:
+    - name: creating a file
+      file:
+        path: /tmp/newfile.txt
+        state: touch
+        # state: absent  # Uncomment to delete the file after creation
+        # owner: paul    # Uncomment to set the owner of the file
+        # group: paul    # Uncomment to set the group of the file
+        mode: '0664'    # Adjust file permissions as needed (u=rwx,g=rw,o=r)
+
+    - name: creating a directory
+      file:
+        path: /tmp/myfolder
+        state: directory
+        # state: absent  # Uncomment to delete the directory after creation
