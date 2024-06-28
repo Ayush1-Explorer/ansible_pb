@@ -1,0 +1,13 @@
+---
+- name: copying files to remote machine
+  hosts: myhosts
+
+  tasks:
+  - name: copy files
+    copy:
+      src: /root/myfile.txt
+      dest: /root/
+        # owner: paul      #you can assign user ownership on this file soo that everyone on server can't use this 
+        # group: paul      #you can change the group of users who can access this file on remote server
+      mode: ugo=rw     #you can give permission in numeric form also and also in alpha formats
+      backup: true    #using backup option will will help to maintain the backup of files on remote system if evertime changes are made
