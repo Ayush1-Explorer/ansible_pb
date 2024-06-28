@@ -1,0 +1,10 @@
+---
+- name: run a script
+  hosts: all
+
+  tasks:
+  - name: run script      #this playbook will run a shell script which is present on remote system
+    shell: ./test.sh >> test.log 
+    args:
+      chdir: /tmp/scripts/       #if we dont speciify paths the script will be executed but in root folder
+      creates: test.log         #and not in tmp filder and we store message from script in test.log
