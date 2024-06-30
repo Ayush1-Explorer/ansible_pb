@@ -1,0 +1,27 @@
+---
+- name: cron setup
+  hosts: myhosts
+
+  tasks:
+    - name: install cron package
+      package:
+        name: cronie  # Use 'cron' if using a Debian-based distribution
+        state: present
+
+    - name: start and enable cron service
+      service:
+        name: crond  # Use 'cron' if using a Debian-based distribution
+        state: started
+        enabled: true
+
+    - name: add cron job
+      cron:
+        name: run test script
+        minute: 20
+        hour: 18
+        day: 15
+        month: "*"
+        weekday: "*"
+        # user: paul  # Uncomment and set this to run the job as a specific user
+        job: /root/scripts/test.sh
+
